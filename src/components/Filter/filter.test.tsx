@@ -10,6 +10,7 @@ describe('Filter component', () => {
     test('renders Filter component without errors', () => {
         const onClose = jest.fn();
         const allCharacters = jest.fn();
+        const setTyping = jest.fn();
 
         const { getByText } = render(
             <Provider store={store}>
@@ -19,6 +20,7 @@ describe('Filter component', () => {
                     allCharacters={allCharacters}
                     optionsStatus={optionsStatus}
                     optionsGender={optionsGender}
+                    setTyping={setTyping}
                 />
             </Provider>
         );

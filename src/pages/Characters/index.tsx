@@ -70,6 +70,7 @@ export default function Characters() {
               allCharacters={allCharacters}
               optionsGender={optionsGender}
               optionsStatus={optionsStatus}
+              setTyping={setTyping}
             />
             <Link style={{ width: '100%' }} href='/Favorites'><S.ButtonUtilities>Favoritos</S.ButtonUtilities></Link>
           </S.BoxUtilities>

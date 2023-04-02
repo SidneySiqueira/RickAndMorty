@@ -19,14 +19,16 @@ export default function Modal({ choice, setOpenModal }: Props) {
   const { selectedFavorites } = useFavoritesState();
 
   const nameEpisode = async (url: string) => {
-    try {
-      const res = await axios.get(url);
-      const response = res.data;
-      if (response) {
-        return response.name
-      }
-    } catch (error) {
-      return 'Sem nome de episódio'
+    if (router.pathname === '/Favorites') {
+      try {
+        const res = await axios.get(url);
+        const response = res.data;
+        if (response) {
+          return response.name
+        }
+      } catch (error) {
+        return 'Sem nome de episódio'
+      } 
     }
   };
 

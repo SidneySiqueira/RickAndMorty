@@ -10,6 +10,7 @@ interface FilterProps {
   allCharacters: () => void;
   optionsStatus: { value: string; label: string }[];
   optionsGender: { value: string; label: string }[];
+  setTyping: React.Dispatch<React.SetStateAction<string>>
 }
 
 const Filter: React.FC<FilterProps> = ({
@@ -18,10 +19,12 @@ const Filter: React.FC<FilterProps> = ({
   allCharacters,
   optionsStatus,
   optionsGender,
+  setTyping,
 }) => {
   const dispatch = useDispatch();
 
   const handleClearFilter = () => {
+    setTyping("")
     dispatch(removeSelected());
   };
 

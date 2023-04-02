@@ -5,11 +5,16 @@ import store from '@/Redux/store';
 import Search from '.';
 
 test('renders Search component', () => {
-    const setCharacters = jest.fn();
-    const setLoading = jest.fn();
+    const allCharacters = jest.fn();
+    const setTyping = jest.fn();
+    const setNumberPage = jest.fn();
     const { getByTestId } = render(
         <Provider store={store}>
-            <Search setCharacters={setCharacters} setLoading={setLoading} />
+            <Search 
+            allCharacters={allCharacters}
+            typing={''}
+            setTyping={setTyping} 
+            setNumberPage={setNumberPage} />
         </Provider>
     );
     const searchComponent = getByTestId('box-search');
