@@ -81,7 +81,7 @@ export const NoCharacters = styled.div`
 
 export const TextNoCharacters = styled.h1`
   font-family: sans-serif;
-  font-size: 80px;
+  font-size: 5rem;
   font-weight: bold;
   text-align: center;
   letter-spacing: 4px;
@@ -93,6 +93,12 @@ export const TextNoCharacters = styled.h1`
   border-radius: 10px;
   -webkit-text-stroke-width: 0.2px;
   -webkit-text-stroke-color: #231f20;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin: 20px 0;
+    font-size: 30px;
+  }
 `;
 export const TextFavorites = styled.p`
   font-family: sans-serif;

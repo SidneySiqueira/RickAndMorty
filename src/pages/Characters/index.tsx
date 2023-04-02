@@ -24,6 +24,7 @@ export default function Characters() {
   const [loading, setLoading] = useState(false)
   const [isFilterOpen, setIsFilterOpen] = useState(false)
   const [typing, setTyping] = useState<SetStateAction<string>>('');
+  const [erro, setErro] = useState(false)
 
   const { selectedStatus, selectedGender } = useSelector(
     (state: RootState) => state.filter
@@ -31,6 +32,7 @@ export default function Characters() {
 
   const allCharacters = async () => {
     setLoading(true)
+    setErro(false)
     try {
       const res = await axios.get(`https://rickandmortyapi.com/api/character/?name=${typing}&page=${numberPage}&status=${selectedStatus}&gender=${selectedGender}`);
       const response = res.data;
@@ -38,7 +40,7 @@ export default function Characters() {
         setCharacters(response);
       }
     } catch (error) {
-      console.log("error", error);
+      setErro(true)
     }
     setLoading(false)
   };
@@ -71,7 +73,7 @@ export default function Characters() {
             />
             <Link style={{ width: '100%' }} href='/Favorites'><S.ButtonUtilities>Favoritos</S.ButtonUtilities></Link>
           </S.BoxUtilities>
-          {!loading && characters?.info.count !== 0 ? (
+          {!loading && !erro && characters?.info.count !== 0 ? (
             <Cards
               characters={characters?.results as unknown as CharactersProps}
               setChoice={setChoice}
@@ -80,11 +82,11 @@ export default function Characters() {
           ) : (
             <S.NoCharacters>
               <S.TextNoCharacters>
-                Sorry! No characters found
+                Nenhum personagem encontrado
               </S.TextNoCharacters>
             </S.NoCharacters>
           )}
-          {characters?.info.count && characters !== undefined && (
+          {characters?.info.count && characters !== undefined && !erro && (
             <S.Pagination>
               <Pagination
                 count={characters?.info.pages}
