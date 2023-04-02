@@ -2,7 +2,6 @@ import { Pagination } from "@mui/material";
 import axios from "axios";
 import Link from "next/link";
 import React, {
-  Dispatch,
   SetStateAction,
   useEffect,
   useState,
@@ -23,7 +22,8 @@ export default function Characters() {
   const [numberPage, setNumberPage] = useState(1);
   const [choice, setChoice] = useState<React.SetStateAction<CharactersProps>>();
   const [loading, setLoading] = useState(false)
-  const [isFilterOpen, setIsFilterOpen] = useState(false)  
+  const [isFilterOpen, setIsFilterOpen] = useState(false)
+  const [typing, setTyping] = useState<SetStateAction<string>>('');
 
   const { selectedStatus, selectedGender } = useSelector(
     (state: RootState) => state.filter
@@ -32,7 +32,7 @@ export default function Characters() {
   const allCharacters = async () => {
     setLoading(true)
     try {
-      const res = await axios.get(`https://rickandmortyapi.com/api/character/?page=${numberPage}&status=${selectedStatus}&gender=${selectedGender}`);
+      const res = await axios.get(`https://rickandmortyapi.com/api/character/?name=${typing}&page=${numberPage}&status=${selectedStatus}&gender=${selectedGender}`);
       const response = res.data;
       if (response) {
         setCharacters(response);
@@ -54,7 +54,12 @@ export default function Characters() {
     <S.Container>
       {!loading ? (
         <S.Box>
-          <Search setCharacters={setCharacters as unknown as Dispatch<SetStateAction<Props>>} setLoading={setLoading}/>
+          <Search
+            allCharacters={allCharacters}
+            typing={typing as string}
+            setTyping={setTyping}
+            setNumberPage={setNumberPage}
+            />
           <S.BoxUtilities>
             <S.ButtonUtilities onClick={handleModalOpen}>Filtrar</S.ButtonUtilities>
             <Filter
@@ -64,7 +69,7 @@ export default function Characters() {
               optionsGender={optionsGender}
               optionsStatus={optionsStatus}
             />
-            <Link style={{width: '100%'}} href='/Favorites'><S.ButtonUtilities>Favoritos</S.ButtonUtilities></Link>
+            <Link style={{ width: '100%' }} href='/Favorites'><S.ButtonUtilities>Favoritos</S.ButtonUtilities></Link>
           </S.BoxUtilities>
           {!loading && characters?.info.count !== 0 ? (
             <Cards
