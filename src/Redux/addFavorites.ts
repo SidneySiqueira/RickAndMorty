@@ -47,7 +47,9 @@ const favoritesSlice = createSlice({
         if (index !== -1) {
           state.selectedFavorites.splice(index, 1);
         } else {
-          state.selectedFavorites.push(character);
+          if (state.selectedFavorites.length < 6) {
+            state.selectedFavorites.push(character);
+          }
         }
       });
     },

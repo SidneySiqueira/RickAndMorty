@@ -6,12 +6,11 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  background: linear-gradient(to right, #baec00, #00c400);
-  background-size: 100%;
+  background-color: #ffd627;
+  background-image: url("images/Rick_And_Morty_Logo.png");
+  background-size: 300px 100px;
   background-repeat: repeat;
   @media (max-width: 768px) {
-    background-image: none;
-    background-color: #ffd627;
     border: 10px solid black;
     border-radius: 5px;
   }
@@ -60,6 +59,30 @@ export const Box = styled.div`
   justify-content: center;
 `;
 
+// export const Box = styled.div`
+//   width: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   position: relative;
+
+//   &::before {
+//     content: "";
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+//     background-image: url("images/Rick_And_Morty_Logo.png");
+//     background-size: auto 100%;
+//     background-repeat: repeat;
+//     transform: rotate(-10deg);
+//     transform-origin: top left;
+//     z-index: -1;
+//   }
+// `;
+
 export const Pagination = styled.div`
   display: flex;
   justify-content: center;
@@ -81,23 +104,19 @@ export const NoCharacters = styled.div`
 
 export const TextNoCharacters = styled.h1`
   font-family: sans-serif;
-  font-size: 5rem;
+  font-size: 80px;
   font-weight: bold;
   text-align: center;
   letter-spacing: 4px;
-  background-color: #d3011d;
   padding: 10px;
   margin-bottom: 30px;
-  color: #ffd627;
-  border: 2px solid #231f20;
+  color: #00c400;
   border-radius: 10px;
-  -webkit-text-stroke-width: 0.2px;
-  -webkit-text-stroke-color: #231f20;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #baec00;
 
   @media (max-width: 768px) {
-    width: 100%;
-    margin: 20px 0;
-    font-size: 30px;
+    font-size: 60px;
   }
 `;
 export const TextFavorites = styled.p`

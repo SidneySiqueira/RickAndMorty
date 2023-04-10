@@ -28,7 +28,7 @@ export default function Modal({ choice, setOpenModal }: Props) {
         }
       } catch (error) {
         return 'Sem nome de episódio'
-      } 
+      }
     }
   };
 
@@ -59,7 +59,8 @@ export default function Modal({ choice, setOpenModal }: Props) {
       <S.Box>
         <>
           <S.Name>{choice?.name}</S.Name>
-          <S.AddFavorites
+          {selectedFavorites.length < 6 || selectedFavorites.includes(choice?.id.toString()) ?
+            <S.AddFavorites
             onClick={() => {
               handleFavorites(choice?.id.toString());
               setOpenModal(false);
@@ -67,7 +68,7 @@ export default function Modal({ choice, setOpenModal }: Props) {
             isIncludes={selectedFavorites.includes(choice?.id.toString())}
           >
             {selectedFavorites.includes(choice?.id.toString()) ? 'Remover dos favoritos' : 'Adicionar aos Favoritos'}
-          </S.AddFavorites>
+          </S.AddFavorites> : <S.Alert>*Máximo de 6 favoritos</S.Alert>}
           <S.Topics>Gender:</S.Topics>
           <S.Itens>{choice?.gender}</S.Itens>
           <S.Topics>Species:</S.Topics>

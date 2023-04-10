@@ -20,7 +20,6 @@ export default function Cards({ characters, setChoice, setOpenModal, setLoading 
       .get(`https://rickandmortyapi.com/api/character/${id}`)
       .then((res) => {
         const response = res.data;
-        console.log("response", response);
         
         if (response) {
           setChoice(response);

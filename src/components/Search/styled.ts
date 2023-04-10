@@ -20,6 +20,8 @@ export const BoxLink = styled(Link)<props>`
   display: flex;
   justify-content: center;
   width: ${(props) => (props.isMobile ? "80%" : "20%")};
+  background: #ffd425;
+  border-radius: 50%;
 `;
 
 export const Image = styled.img`

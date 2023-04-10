@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import * as S from "./styled";
 import { CharactersProps } from "@/types/types";
 import { removeAll, useFavoritesState } from "@/Redux/addFavorites";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const FavoritesPage = () => {
   const dispatch = useDispatch();
@@ -53,23 +54,27 @@ const FavoritesPage = () => {
           <S.TextFavorites>Carregando...</S.TextFavorites>
         </S.HomeWrapper> :
         <S.HomeWrapper>
-          <S.BoxTitle>
-            <Link href={'/Characters'}>
-              <p >Voltar</p>
-            </Link>
-            <S.TextFavorites>Favoritos</S.TextFavorites>
-          </S.BoxTitle>
-          <S.ButtonUtilities onClick={handleClearFavorites}>Limpar Favoritos</S.ButtonUtilities>
-          {selectedFavorites.length > 0 && characters.length > 0 ? (
-            <Cards characters={characters as unknown as CharactersProps} setChoice={setSelectedCharacter} setOpenModal={setOpenModal} setLoading={setLoading}/>
-          ) : (
-            <S.NoCharacters>
-              <S.TextNoCharacters>Sem favoritos</S.TextNoCharacters>
-            </S.NoCharacters>
-          )}
-          {openModal && selectedCharacter !== null && (
-            <Modal choice={selectedCharacter as CharactersProps} setOpenModal={setOpenModal} />
-          )}
+          <S.Container>
+            <S.BoxTitle>
+              <Link href={'/Characters'}>
+                <S.BoxArrow>
+                  <ArrowBackIcon />
+                </S.BoxArrow>
+              </Link>
+              <S.TextFavorites>Favoritos</S.TextFavorites>
+            </S.BoxTitle>
+            <S.ButtonUtilities onClick={handleClearFavorites}>Limpar Favoritos</S.ButtonUtilities>
+            {selectedFavorites.length > 0 && characters.length > 0 ? (
+              <Cards characters={characters as unknown as CharactersProps} setChoice={setSelectedCharacter} setOpenModal={setOpenModal} setLoading={setLoading} />
+            ) : (
+              <S.NoCharacters>
+                <S.TextNoCharacters>Sem favoritos</S.TextNoCharacters>
+              </S.NoCharacters>
+            )}
+            {openModal && selectedCharacter !== null && (
+              <Modal choice={selectedCharacter as CharactersProps} setOpenModal={setOpenModal} />
+            )}
+          </S.Container>
         </S.HomeWrapper>}
     </React.Fragment>
   );
