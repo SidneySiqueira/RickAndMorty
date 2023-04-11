@@ -84,7 +84,7 @@ export default function Modal({ choice, setOpenModal }: Props) {
               <S.Topics>Episode appearances:</S.Topics>
               <S.BoxNames>
                 {episodeNames.map((name) => (
-                  <S.Itens>{name}</S.Itens>
+                  <S.Itens key={name}>{name}</S.Itens>
                 ))}
               </S.BoxNames>
             </>
